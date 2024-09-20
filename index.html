@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CFI Endorsement Generator</title>
+        <link rel="stylesheet" href="/style/main.css">
+    </head>
+    <body>
+        <form name="frmEndorsements">
+            <fieldset>
+                <legend>CFI Name</legend>
+                <input name="txtCfiName">
+            </fieldset>
+            <fieldset>
+                <legend>CFI Number</legend>
+                <input name="txtCfiNumber">
+            </fieldset>
+            <fieldset>
+                <legend>CFI Expiration Date</legend>
+                <input name="txtCfiExpDate">
+            </fieldset>
+            <fieldset>
+                <legend>Signing Date</legend>
+                <input name="txtSigningDate">
+            </fieldset>
+
+            <div id="endorsements"></div>
+            <button type="button">Submit</button>
+        </form>
+        <embed src=""/>
+    </body>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="/scripts/main.js" type="module"></script>
+</html>
