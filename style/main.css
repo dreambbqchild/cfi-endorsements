@@ -22,8 +22,18 @@ section {
     border-radius: 1em;
 }
 
-#endorsements input ~ div { display: none; margin: 1em 0 1em 0;}
-#endorsements input:checked ~ div {display: block;}
+#endorsements input ~ div {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s, margin 0.5s;
+    margin: 0;
+}
+
+#endorsements input:checked ~ div {
+    max-height: 10em;
+    transition: max-height 0.5s, margin 0.5s;;
+    margin: 1em 0 1em 0;
+}
 
 embed {height: 100vh; width: 100vw;}
 
