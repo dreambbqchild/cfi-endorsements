@@ -21,7 +21,7 @@ const fillInTheBlankFn = (match) => {
 }
 
 for(const [sectionTitle, sectionEndorsement] of Object.entries(endorsements)) {
-    bodyBuilder.append(`<h1>${sectionTitle}</h1>`);
+    bodyBuilder.append(`<section><h2>${sectionTitle}</h2>`);
     for(const [anchorName, endorsement] of Object.entries(sectionEndorsement))
     {
             const note = endorsement.note ? `<span class="highlight">${endorsement.note}</span><br>` : '';
@@ -32,6 +32,7 @@ for(const [sectionTitle, sectionEndorsement] of Object.entries(endorsements)) {
             <div>${note}<span>${endorsement.body.replace(/\[[^\]]+\]/g, fillInTheBlankFn)}</span></div>
         </div>`);
     }
+    bodyBuilder.append(`</section>`);
 }
 
 bodyBuilder.setOnElement(eleEndorsements);

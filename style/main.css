@@ -1,8 +1,36 @@
+:root {
+    --main-bg-color: #4CC2FA;
+    --light: #D2EAEF;
+    --darker-accent: #6AD8F9;
+    --lighter-accent: #A1E4F9;
+    --highlight: #ECF8B5;
+  }
+  
+
+html, body {
+    background-color: var(--main-bg-color);
+    padding: 0;
+    margin: 0;
+}
+
 fieldset {display: inline-block;}
 
-#endorsements div div { display: none; }
+section {
+    padding: 1em;
+    margin: 1em;
+    background-color: var(--light);
+    border-radius: 1em;
+}
+
+#endorsements input ~ div { display: none; }
 #endorsements input:checked ~ div {display: block;}
 
 embed {height: 100vh; width: 100vw;}
 
-.highlight {background-color: yellow;}
+.highlight {
+    display: inline-block;
+    font-weight: bold;
+    background-color: var(--highlight);
+    line-height: 2em;
+    padding: 0 1em 0 1em;
+}
