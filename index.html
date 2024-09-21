@@ -6,23 +6,26 @@
     </head>
     <body>
         <h1 class="text-center">CFI Endorsement Generator</h1>
+        <hr/>
         <form name="frmEndorsements">
-            <fieldset>
-                <legend>CFI Name</legend>
-                <input name="txtCfiName">
-            </fieldset>
-            <fieldset>
-                <legend>CFI Number</legend>
-                <input name="txtCfiNumber">
-            </fieldset>
-            <fieldset>
-                <legend>CFI Expiration Date</legend>
-                <input name="txtCfiExpDate">
-            </fieldset>
-            <fieldset>
-                <legend>Signing Date</legend>
-                <input name="txtSigningDate">
-            </fieldset>
+            <div class="box">
+                <fieldset>
+                    <legend>CFI Name</legend>
+                    <input name="txtCfiName">
+                </fieldset>
+                <fieldset>
+                    <legend>CFI Number</legend>
+                    <input name="txtCfiNumber">
+                </fieldset>
+                <fieldset>
+                    <legend>CFI Expiration Date</legend>
+                    <input name="txtCfiExpDate">
+                </fieldset>
+                <fieldset>
+                    <legend>Signing Date</legend>
+                    <input name="txtSigningDate">
+                </fieldset>
+            </div>
 
             <div id="endorsements"></div>
             <button type="button">Render PDF</button>
