@@ -22,7 +22,7 @@ section {
     border-radius: 1em;
 }
 
-#endorsements input ~ div { display: none; }
+#endorsements input ~ div { display: none; margin: 1em 0 1em 0;}
 #endorsements input:checked ~ div {display: block;}
 
 embed {height: 100vh; width: 100vw;}
