@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>CFI Endorsement Generator</title>
+        <meta charset="utf-8">
+        <title>CFI Endorsements</title>
         <link rel="stylesheet" href="/style/main.css">
     </head>
     <body>
-        <h1 class="text-center">CFI Endorsement Generator</h1>
-        <hr/>
-        <form name="frmEndorsements">
-            <div class="box">
-                <fieldset>
-                    <legend>CFI Name</legend>
-                    <input name="txtCfiName">
-                </fieldset>
-                <fieldset>
-                    <legend>CFI Number</legend>
-                    <input name="txtCfiNumber">
-                </fieldset>
-                <fieldset>
-                    <legend>CFI Expiration Date</legend>
-                    <input name="txtCfiExpDate">
-                </fieldset>
-                <fieldset>
-                    <legend>Signing Date</legend>
-                    <input name="txtSigningDate">
-                </fieldset>
+        <h1 class="text-center">CFI Endorsements per AC 61-65H</h1>
+        <form name="frmEndorsements" method="POST">
+            <section class="no-margin-bottom no-padding">
+                <div class="box">
+                    <h2 class="no-padding">CFI/Endorsement Information:</h2>
+                    <div class="box">
+                        <div class="box">
+                            <div>
+                                <label>CFI Name</label>
+                                <input name="txtCfiName" required>
+                            </div>
+                            <div>
+                                <label>CFI Number</label>
+                                <input name="txtCfiNumber" required>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div>
+                                <label>CFI Expiration Date</label>
+                                <input name="txtCfiExpDate" required>
+                            </div>
+                            <div>
+                                <label>Signing Date</label>
+                                <input name="txtSigningDate" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="sticky-top">
+                <section class="bold">
+                    <ol>
+                        <li>Please select the checkbox (<input type="checkbox" class="no-click"/>) next to the desired endorsements.</li>
+                        <li>Press <button>Render PDF</button> to download your document of endorsements to print.</li>
+                    </ol>
+                </section>
             </div>
-
             <div id="endorsements"></div>
-            <button type="button">Render PDF</button>
         </form>
-        <embed src=""/>
     </body>
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
     <script src="/scripts/main.js" type="module"></script>

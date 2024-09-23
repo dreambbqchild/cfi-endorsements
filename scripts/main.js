@@ -24,12 +24,12 @@ for(const [sectionTitle, sectionEndorsement] of Object.entries(endorsements)) {
     bodyBuilder.append(`<section><h2>${sectionTitle}</h2>`);
     for(const [anchorName, endorsement] of Object.entries(sectionEndorsement))
     {
-            const note = endorsement.note ? `<span class="highlight">${endorsement.note}</span><br>` : '';
-            bodyBuilder.append(`<div>
+            const note = endorsement.note ? `<span class="highlight line-height-1em">${endorsement.note}</span><br>` : '';
+            bodyBuilder.append(`<hr/><div>
             <input type="checkbox" data-section="${sectionTitle}" value="${anchorName}">
             <span>${anchorName}</span>
             <span>${endorsement.title.replace(/(91|61)\.\d+/g, regulationLinkFn)}</span>
-            <div>${note}<span>${endorsement.body.replace(/\[[^\]]+\]/g, fillInTheBlankFn)}</span></div>
+            <div class="endorsement-body line-height-2em">${note}<span>${endorsement.body.replace(/\[[^\]]+\]/g, fillInTheBlankFn)}</span></div>
         </div>`);
     }
     bodyBuilder.append(`</section>`);
@@ -37,7 +37,20 @@ for(const [sectionTitle, sectionEndorsement] of Object.entries(endorsements)) {
 
 bodyBuilder.setOnElement(eleEndorsements);
 
-document.querySelector('button').addEventListener('click', () => {
+document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    txtCfiName.value = txtCfiName.value.trim();
+    txtCfiNumber.value = txtCfiNumber.value.trim();
+    txtCfiExpDate.value = txtCfiExpDate.value.trim();
+    txtSigningDate.value = txtSigningDate.value.trim();
+
+    if(!e.target.checkValidity())
+    {
+        alert('Please make sure you\'ve entered all your information for this endorsement.');
+        return;
+    }
+
     localStorage.setItem('txtCfiName', txtCfiName.value);
     localStorage.setItem('txtCfiNumber', txtCfiNumber.value);
     localStorage.setItem('txtCfiExpDate', txtCfiExpDate.value);
@@ -52,5 +65,5 @@ document.querySelector('button').addEventListener('click', () => {
         pdfBuilder.append(body);
     }
 
-    pdfBuilder.renderTo(document.querySelector('embed'));
+    pdfBuilder.print(txtCfiName.value);
 });

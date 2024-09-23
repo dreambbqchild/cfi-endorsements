@@ -1,5 +1,12 @@
 const { jsPDF } = jspdf;
+import times from './times-normal.js';
 
+var callAddFont = function () {
+    this.addFileToVFS('times-normal.ttf', times);
+    this.addFont('times-normal.ttf', 'times', 'normal');
+};
+jsPDF.API.events.push(['addFonts', callAddFont])
+    
 const LINE_WIDTH = 0.02;
 
 class SignatureBuilder {
@@ -32,7 +39,8 @@ export default class PDFBuilder {
     constructor(cfiName, cfiNumber, expDate, signDate) {
         this.#doc.setFont('times', 'normal');
         this.#doc.setFontSize(12);
-        this.#doc.setLineWidth(LINE_WIDTH); 
+        this.#doc.setLineWidth(LINE_WIDTH);     
+        this.#doc.autoPrint();
 
         const signatureBuilder = new SignatureBuilder(this.#doc);
 
@@ -65,8 +73,9 @@ export default class PDFBuilder {
         this.#docY += height * 2;
     }
 
-    save() {        
-        this.#doc.save('Endorsements.pdf');
+    print(cfi) {
+        const ymd = new Date().toLocaleDateString().replace(/\//g, '-');
+        this.#doc.save(`${cfi} Endorsements ${ymd}.pdf`);
     }
 
     renderTo(embed) {

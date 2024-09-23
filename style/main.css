@@ -3,17 +3,47 @@
     --light: #D2EAEF;
     --darker-accent: #6AD8F9;
     --lighter-accent: #A1E4F9;
-    --highlight: #ECF8B5;
-  }
+    --highlight: #ECF8B5; 
+}
   
+@media (min-width: 480px)  { 
+    html {
+        font-size: 12pt;
+    }
+}
+
+@media (min-width: 767px)  { 
+    html {
+        font-size: 15pt;
+    }
+}
+
+@media (min-width: 1025px) { 
+    html {
+        font-size: 16pt;
+    }
+}
+
+h1 {
+    background-color: var(--light);
+    padding: 0.67em 0 0.67em 0;
+    margin: 0;
+}
 
 html, body {
     background-color: var(--main-bg-color);
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
-fieldset {display: inline-block;}
+fieldset {
+    display: inline-block;
+}
+
+label {
+    display: block;
+}
 
 section {
     padding: 1em;
@@ -22,35 +52,78 @@ section {
     border-radius: 1em;
 }
 
-#endorsements input ~ div {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s, margin 0.5s;
-    margin: 0;
+embed {
+    height: 100vh; 
+    width: 100vw;
 }
 
-#endorsements input:checked ~ div {
-    max-height: 10em;
-    transition: max-height 0.5s, margin 0.5s;;
-    margin: 1em 0 1em 0;
+.bold {
+    font-weight: bold;
 }
-
-embed {height: 100vh; width: 100vw;}
 
 .box {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+
+    > * {
+        padding: 0.38em;
+    }
 }
 
 .highlight {
     display: inline-block;
     font-weight: bold;
     background-color: var(--highlight);
+    padding: 0.5em;
+}
+
+.line-height-1em {
+    line-height: 1em;
+}
+
+.line-height-2em {
     line-height: 2em;
-    padding: 0 1em 0 1em;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0;
+}
+
+.no-click {
+    pointer-events: none;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.sticky-top {
+    position: sticky;
+    top: 0px;
+    padding: 4px 0px 4px 0px;
+    background-color: var(--main-bg-color);
+    box-shadow: 0px 5px 5px rgba(1, 1, 1, 0.75);
 }
 
 .text-center {
     text-align: center;
+}
+
+input ~ .endorsement-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s, margin 0.5s;
+    margin: 0;
+}
+
+input:checked ~ .endorsement-body {
+    max-height: 10em;
+    transition: max-height 0.5s, margin 0.5s;;
+    margin: 1em 0 1em 0;
 }
