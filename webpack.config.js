@@ -13,8 +13,8 @@ module.exports = {
     template: "src/index.html",
     inject: false
   }), new MiniCssExtractPlugin({
-    filename: "assets/css/[name].[contenthash:8].css",
-    chunkFilename: "assets/css/[name].[contenthash:8].chunk.css"
+    filename: "style/[name].[contenthash:8].css",
+    chunkFilename: "style/[name].[contenthash:8].chunk.css"
   })],
   module:{
     rules: [

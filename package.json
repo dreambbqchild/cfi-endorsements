@@ -4,7 +4,7 @@
   "description": "Simple website for generating a PDF containing endorsements for flight students. Templates based on AC 61-65H.",
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "build": "rm -rf dist && webpack --mode production"
   },
   "author": "",
   "license": "ISC",
