@@ -1,3 +1,5 @@
+import '../style/main.css';
+
 import endorsements from './61-65h.js';
 import HTMLBuilder from './HTMLBuilder.js';
 import PDFBuilder from './PDFBuilder.js';

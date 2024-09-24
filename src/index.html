@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>CFI Endorsements</title>
-        <link rel="stylesheet" href="/style/main.css">
+        <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
     </head>
     <body>
         <h1 class="text-center">CFI Endorsements per AC 61-65H</h1>
@@ -47,5 +47,5 @@
         </form>
     </body>
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-    <script src="/scripts/main.js" type="module"></script>
+    <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>
 </html>
