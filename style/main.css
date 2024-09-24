@@ -3,30 +3,31 @@
     --light: #D2EAEF;
     --darker-accent: #6AD8F9;
     --lighter-accent: #A1E4F9;
-    --highlight: #ECF8B5; 
+    --highlight: #ECF8B5;
+    --gap: 0.67em
 }
   
 @media (min-width: 480px)  { 
-    html {
+    html, button, input {
         font-size: 12pt;
     }
 }
 
 @media (min-width: 767px)  { 
-    html {
+    html, button, input {
         font-size: 15pt;
     }
 }
 
 @media (min-width: 1025px) { 
-    html {
+    html, button, input {
         font-size: 16pt;
     }
 }
 
 h1 {
     background-color: var(--light);
-    padding: 0.67em 0 0.67em 0;
+    padding: var(--gap) 0 var(--gap) 0;
     margin: 0;
 }
 
@@ -46,10 +47,10 @@ label {
 }
 
 section {
-    padding: 1em;
-    margin: 1em;
+    padding: var(--gap) ;
+    margin: var(--gap) ;
     background-color: var(--light);
-    border-radius: 1em;
+    border-radius: var(--gap) ;
 }
 
 embed {
@@ -76,7 +77,7 @@ embed {
     display: inline-block;
     font-weight: bold;
     background-color: var(--highlight);
-    padding: 0.5em;
+    padding: var(--gap) ;
 }
 
 .line-height-1em {
@@ -124,6 +125,6 @@ input ~ .endorsement-body {
 
 input:checked ~ .endorsement-body {
     max-height: 10em;
-    transition: max-height 0.5s, margin 0.5s;;
-    margin: 1em 0 1em 0;
+    transition: max-height 0.5s, margin 0.5s;
+    margin: var(--gap) 0 var(--gap)  0;
 }
