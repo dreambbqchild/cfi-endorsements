@@ -17,9 +17,9 @@
         <article id="root">
             <h1 class="text-center">CFI Endorsements per AC 61-65H</h1>
             <form name="frmEndorsements" method="POST">
-                <section class="margin-none-bottom padding-none">
+                <section>
                     <div class="box">
-                        <h2 class="padding-none">CFI/Endorsement Information:</h2>
+                        <h2 class="padding-none margin-none">CFI/Endorsement Information:</h2>
                         <div class="box">
                             <div class="box">
                                 <div class="padding-half">
@@ -47,10 +47,10 @@
                 </section>
                 <div class="sticky-top">
                     <section class="bold">
-                        <ol>
-                            <li>Please select the checkbox (<input type="checkbox" class="no-click"/>) next to the desired endorsements.</li>
-                            <li>Press <button>Render PDF</button> to download your document of endorsements to print.</li>
-                        </ol>
+                        <div class="box">
+                            <span style="padding: 0 var(--half-gap);">1. Please select the checkbox (<input type="checkbox" class="no-click"/>) next to the desired endorsements.</span>
+                            <span style="padding: 0 var(--half-gap);">2. Press <button>Render PDF</button> to download your document of endorsements to print.</span>
+                        </div>
                     </section>
                 </div>
                 <div id="endorsements"></div>
