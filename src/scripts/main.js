@@ -78,11 +78,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const values = button.dataset.quickSelect.split(',');
             const fillValues = {
                 applicable: button.dataset.applicable,
-                'name of': button.dataset.applicable
+                'name of': button.dataset.applicable,
             };
 
-            for(const input of quickFill.querySelectorAll('[data-placeholder]'))
+            for(const input of quickFill.querySelectorAll('[data-placeholder]')){
                 fillValues[input.dataset.placeholder] = input.value;
+                if(input.value === 'he')
+                    fillValues['him or her'] = 'him';
+                else if(input.value === 'she')
+                    fillValues['him or her'] = 'her';
+            }
             
             for(const value of values) {
                 const checkbox = document.querySelector(`input[value="${value}"]`);
