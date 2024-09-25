@@ -86,7 +86,7 @@ export default {
     },
     "A.20": {
       "title": "Taking sport pilot practical test: §§ 61.309, 61.311, and 61.313.",
-      "body": "I certify that [First name, MI, Last name] has received the training required in accordance with §§ 61.309 and 61.311 and met the aeronautical experience requirements of § 61.313. I have determined that [he or she] is prepared for the [type of] practical test.",
+      "body": "I certify that [First name, MI, Last name] has received the training required in accordance with §§ 61.309 and 61.311 and met the aeronautical experience requirements of § 61.313. I have determined that [he or she] is prepared for the [name of] practical test.",
       "note": "Note: The endorsement for a practical test is required in addition to the § 61.39 endorsements provided in endorsements 1 and 2 (see paragraphs A.1 and A.2)."
     },
     "A.21": {
