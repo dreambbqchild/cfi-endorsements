@@ -48,11 +48,43 @@
                 <div class="sticky-top">
                     <section class="bold">
                         <div class="box">
-                            <span style="padding: 0 var(--half-gap);">1. Please select the checkbox (<input type="checkbox" class="no-click"/>) next to the desired endorsements.</span>
+                            <span style="padding: 0 var(--half-gap);">1. Please select the checkbox (<input type="checkbox" class="no-click"/>) next to the desired endorsements, or use Quick Fill.</span>
                             <span style="padding: 0 var(--half-gap);">2. Press <button>Render PDF</button> to download your document of endorsements to print.</span>
+                            <span style="padding: 0 var(--half-gap);">3. Press <button id="clear-endorsements" type="button">Clear</button> to reset the endorsement selection from.</span>
                         </div>
                     </section>
                 </div>
+                <section id="quick-fill">
+                    <div class="box">
+                        <span class="bold">Quick Fill</span>
+                    </div>
+                    <div class="box">
+                        <table>
+                            <tr>
+                                <td class="leaders">First, Middle Inital &amp; Last Name</td><td><input data-placeholder="First name, MI, Last name"></input></td>
+                            </tr>
+                            <tr>
+                                <td class="leaders">he or she</td>
+                                <td>
+                                    <select class="w-100p" data-placeholder="he or she">
+                                        <option>he</option>
+                                        <option>she</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="leaders">Make and Model of Aircraft</td><td><input data-placeholder="make and model"></input></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="box">
+                        <button type="button" class="margin-half" data-applicable="Student Pilot Airplane" data-quick-select="A.3,A.4,A.6">Student Pilot Solo</button>
+                        <button type="button" class="margin-half" data-applicable="Sport Pilot Airplane" data-quick-select="A.1,A.2,A.20,A.23,A.24">Sport Pilot Endorsements</button>
+                        <button type="button" class="margin-half" data-applicable="Private Pilot Airplane" data-quick-select="A.1,A.2,A.33">Private Pilot Endorsements</button>
+                        <button type="button" class="margin-half" data-applicable="Intrument Pilot Airplane" data-quick-select="A.1,A.2,A.39,A.40">Instrument Pilot Endorsements</button>
+                        <button type="button" class="margin-half" data-applicable="Commerical Pilot Airplane" data-quick-select="A.1,A.2,A.35">Commerical Pilot Endorsements</button>
+                    </div>
+                </section>
                 <div id="endorsements"></div>
             </form>
         </article>

@@ -9,19 +9,19 @@
 }
   
 @media (min-width: 480px)  { 
-    html, button, input {
+    html, button, input, select {
         font-size: 12pt;
     }
 }
 
 @media (min-width: 767px)  { 
-    html, button, input {
+    html, button, input, select {
         font-size: 15pt;
     }
 }
 
 @media (min-width: 1025px) { 
-    html, button, input {
+    html, button, input, select {
         font-size: 16pt;
     }
 }
@@ -42,7 +42,7 @@ html, body {
     margin: 0;
 }
 
-html, body, button, input {
+html, body, button, input, select {
     font-family: 'Times New Roman';
 }
 
@@ -87,6 +87,7 @@ embed {
 .leaders {
     position: relative;
     overflow: hidden;
+    z-index: 0;
 }
 
 .leaders::after {
@@ -182,6 +183,7 @@ embed {
     background-color: var(--main-bg-color);
     box-shadow: 0px 5px 5px rgba(1, 1, 1, 0.75);
     padding-bottom: var(--half-gap);
+    z-index: 1;
 
     section {
         margin-bottom: 0;

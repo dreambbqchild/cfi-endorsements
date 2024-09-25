@@ -16,12 +16,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const {txtCfiName, txtCfiNumber, txtCfiExpDate, txtSigningDate} = frmEndorsements.elements;
     const popupOverlay = document.querySelector('.overlay');
     const popupContent = document.querySelector('.popup-content');
+    const quickFill = document.getElementById('quick-fill');
+    const clearEndorsements = document.getElementById('clear-endorsements');
 
-    txtCfiName.value = localStorage.getItem('txtCfiName');
-    txtCfiNumber.value = localStorage.getItem('txtCfiNumber');
-    txtCfiExpDate.value = localStorage.getItem('txtCfiExpDate');
-    txtSigningDate.value = now.toLocaleDateString();
+    const restoreCFIInformation = () => {
+        txtCfiName.value = localStorage.getItem('txtCfiName');
+        txtCfiNumber.value = localStorage.getItem('txtCfiNumber');
+        txtCfiExpDate.value = localStorage.getItem('txtCfiExpDate');
+        txtSigningDate.value = now.toLocaleDateString();
+    };
 
+    restoreCFIInformation();
+
+    clearEndorsements.addEventListener('click', () => {
+        frmEndorsements.reset();
+        restoreCFIInformation();
+    });
+
+    //Form popups
     const popupClose = () => {
         popupOverlay.classList.remove('show');
 
@@ -44,6 +56,50 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = 'hidden';
     }
 
+    const formRegistry = {};
+    for(const button of eleEndorsements.querySelectorAll('button[data-far]')) {
+        button.addEventListener('click', () => {
+            const {far} = button.dataset;
+            let form = formRegistry[far];
+            if(!form){
+                 form = ValidationForm.new(button.dataset.far);
+                 form.addEventListener('closing', popupClose);
+                 formRegistry[far] = form;
+            } else 
+                form.reset();
+
+            popupOpen(form);
+        });
+    }
+
+    //Quick Select Buttons
+    for(const button of document.querySelectorAll('[data-quick-select]')) {
+        button.addEventListener('click', () => {
+            const values = button.dataset.quickSelect.split(',');
+            const fillValues = {
+                applicable: button.dataset.applicable,
+                'name of': button.dataset.applicable
+            };
+
+            for(const input of quickFill.querySelectorAll('[data-placeholder]'))
+                fillValues[input.dataset.placeholder] = input.value;
+            
+            for(const value of values) {
+                const checkbox = document.querySelector(`input[value="${value}"]`);
+                checkbox.checked = true;
+
+                const placeholderInputs = checkbox.parentElement.querySelector('.endorsement-body').querySelectorAll('[placeholder]');
+                for(const placeholderInput of placeholderInputs) {
+                    if(!fillValues[placeholderInput.placeholder])
+                        continue;
+
+                    placeholderInput.value = fillValues[placeholderInput.placeholder];
+                }
+            }
+        })
+    }
+
+    //Endorsements body
     const regulationLinkFn = (match) => {
         const validator = ValidationForm.keyExists(match) ? `<button type="button" data-far="${match}">Open Validator</button>` : '';
         return `<a target="_blank" href="https://www.ecfr.gov/current/title-14/section-${match}">${match}</a> ${validator}`
@@ -51,7 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const fillInTheBlankFn = (match) => {
         const placeholder = match.substring(1, match.length - 1);
-        return `</span><input placeholder="${placeholder}" size="${placeholder.length}" type="text"></input><span>`
+        const size = ['applicable', 'name of'].indexOf(placeholder) < 0 ? placeholder.length : 30;
+        return `</span><input placeholder="${placeholder}" size="${size}" type="text"></input><span>`
     }
 
     for(const [sectionTitle, sectionEndorsement] of Object.entries(endorsements)) {
@@ -71,22 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     bodyBuilder.setOnElement(eleEndorsements);
 
-    const formRegistry = {};
-    for(const button of eleEndorsements.querySelectorAll('button[data-far]')) {
-        button.addEventListener('click', () => {
-            const {far} = button.dataset;
-            let form = formRegistry[far];
-            if(!form){
-                 form = ValidationForm.new(button.dataset.far);
-                 form.addEventListener('closing', popupClose);
-                 formRegistry[far] = form;
-            } else 
-                form.reset();
-
-            popupOpen(form);
-        });
-    }
-
+    //Form Endorsement Submit
     frmEndorsements.addEventListener('submit', (e) => {
         e.preventDefault();
 

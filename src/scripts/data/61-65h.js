@@ -25,11 +25,11 @@ export default {
     },
     "A.6": {
       "title": "Solo flight (first 90 calendar-day period): § 61.87(n).",
-      "body": "I certify that [First name, MI, Last name] has received the required training to qualify for solo flying. I have determined [he or she] meets the applicable requirements of § 61.87(n) and is proficient to make solo flights in [make and model]."
+      "body": "I certify that [First name, MI, Last name] has received the required training to qualify for solo flying. I have determined [he or she] meets the applicable requirements of § 61.87(n) and is proficient to make solo flights in [make and model] subject to the following conditions: [List any applicable conditions or limitations.]"
     },
     "A.7": {
       "title": "Solo flight (each additional 90 calendar-day period): § 61.87(p).",
-      "body": "I certify that [First name, MI, Last name] has received the required training to qualify for solo flying. I have determined that [he or she] meets the applicable requirements of § 61.87(p) and is proficient to make solo flights in [make and model]."
+      "body": "I certify that [First name, MI, Last name] has received the required training to qualify for solo flying. I have determined that [he or she] meets the applicable requirements of § 61.87(p) and is proficient to make solo flights in [make and model] subject to the following conditions: [List any applicable conditions or limitations.]"
     },
     "A.8": {
       "title": "Solo takeoffs and landings at another airport within 25 nautical miles (NM): § 61.93(b)(1).",
