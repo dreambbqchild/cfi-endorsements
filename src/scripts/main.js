@@ -110,10 +110,21 @@ document.addEventListener("DOMContentLoaded", () => {
         return `<a target="_blank" href="https://www.ecfr.gov/current/title-14/section-${match}">${match}</a> ${validator}`
     }
 
+    const textFieldSize = (placeholder) => {
+        if(['applicable', 'name of'].indexOf(placeholder) >= 0)
+            return 30;
+
+        if(placeholder === 'date')
+            return 10;
+
+        return placeholder.length;
+    }
+
     const fillInTheBlankFn = (match) => {
         const placeholder = match.substring(1, match.length - 1);
-        const size = ['applicable', 'name of'].indexOf(placeholder) < 0 ? placeholder.length : 30;
-        return `</span><input placeholder="${placeholder}" size="${size}" type="text"></input><span>`
+        const size = textFieldSize(placeholder);
+        const value = placeholder === 'date' ? now.toLocaleDateString() : '';
+        return `</span><input placeholder="${placeholder}" size="${size}" type="text" value="${value}"></input><span>`
     }
 
     for(const [sectionTitle, sectionEndorsement] of Object.entries(endorsements)) {
