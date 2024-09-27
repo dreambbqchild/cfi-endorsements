@@ -1,5 +1,5 @@
-import HTMLBuilder from './HTMLBuilder';
-import validations from './validations/mod.js';
+import HTMLBuilder from '../services/HTMLBuilder';
+import validations from '../validations/mod.js';
 
 const GAP = 0.67;
 

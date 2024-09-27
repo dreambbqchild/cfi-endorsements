@@ -9,7 +9,7 @@ export default class ImportantDates extends HTMLElement {
     }
 
     connectedCallback() {
-        this.innerHTML = `<div class="text-center" style="line-height: 1.5em">
+        this.innerHTML = `<div class="text-center margin-half" style="line-height: 1.5em">
             <div class="bold">Important Dates Relative to ${now.toLocaleDateString()}:</div>
             <div class="box">
                 <div><span>24 Calendar Months, Preceding: </span><span class="bold">${twentyFourCalendarMonthsPreceedingCurrent}</span>&nbsp;|&nbsp;</div>    

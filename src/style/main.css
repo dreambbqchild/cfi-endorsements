@@ -156,13 +156,13 @@ embed {
     100% { opacity: 1; }
   }
 
-.popup {
+.modal {
     position: fixed;
     top: var(--gap);
     z-index: 100;
     width: 100vw;
 
-    .popup-content {
+    .modal-content {
         background-color: var(--main-bg-color);
         border-radius: var(--half-gap);
         border: solid var(--darker-accent) 1px;

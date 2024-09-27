@@ -1,12 +1,14 @@
 import '../style/main.css';
 
 import './DateExtensions.js';
-import './ImportantDates.js';
+import './elements/ImportantDates.js';
+import './elements/ModalDialog.js';
+import './elements/QuickSelect.js';
 
 import endorsements from './data/61-65h.js';
-import HTMLBuilder from './HTMLBuilder.js';
-import PDFBuilder from './PDFBuilder.js';
-import ValidationForm from './ValidationForm.js'
+import HTMLBuilder from './services/HTMLBuilder.js';
+import PDFBuilder from './services/PDFBuilder.js';
+import ValidationForm from './elements/ValidationForm.js'
 
 document.addEventListener("DOMContentLoaded", () => {
     const now = new Date();
@@ -14,10 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const eleEndorsements = document.getElementById('endorsements');
     const {frmEndorsements} = document.forms;
     const {txtCfiName, txtCfiNumber, txtCfiExpDate, txtSigningDate} = frmEndorsements.elements;
-    const popupOverlay = document.querySelector('.overlay');
-    const popupContent = document.querySelector('.popup-content');
-    const quickFill = document.getElementById('quick-fill');
     const clearEndorsements = document.getElementById('clear-endorsements');
+    const modalDialog = document.querySelector('modal-dialog');
 
     const restoreCFIInformation = () => {
         txtCfiName.value = localStorage.getItem('txtCfiName');
@@ -33,62 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
         restoreCFIInformation();
     });
 
-    //Form popups
-    const popupClose = () => {
-        popupOverlay.classList.remove('show');
-
-        for(const input of document.getElementById('root').querySelectorAll('input, a'))
-            input.removeAttribute('tabindex');
-
-        document.body.style.overflow = null;
-    }
-
-    const popupOpen = (child) => {
-        if(popupContent.firstChild)
-            popupContent.removeChild(popupContent.firstChild);
-
-        popupContent.appendChild(child);
-        popupOverlay.classList.add('show');
-
-        for(const input of document.getElementById('root').querySelectorAll('input, a'))
-            input.setAttribute('tabindex', -1);
-
-        document.body.style.overflow = 'hidden';
-    }
-
-    //Quick Select Buttons
-    for(const button of document.querySelectorAll('[data-quick-select]')) {
-        button.addEventListener('click', () => {
-            const values = button.dataset.quickSelect.split(',');
-            const fillValues = {
-                applicable: button.dataset.applicable,
-                'name of': button.dataset.applicable,
-            };
-
-            for(const input of quickFill.querySelectorAll('[data-placeholder]')){
-                fillValues[input.dataset.placeholder] = input.value;
-                if(input.value === 'he')
-                    fillValues['him or her'] = 'him';
-                else if(input.value === 'she')
-                    fillValues['him or her'] = 'her';
-            }
-            
-            for(const value of values) {
-                const checkbox = document.querySelector(`input[value="${value}"]`);
-                checkbox.checked = true;
-
-                const placeholderInputs = checkbox.parentElement.querySelector('.endorsement-body').querySelectorAll('[placeholder]');
-                for(const placeholderInput of placeholderInputs) {
-                    if(!fillValues[placeholderInput.placeholder])
-                        continue;
-
-                    placeholderInput.value = fillValues[placeholderInput.placeholder];
-                }
-            }
-        })
-    }
-
-    //Endorsements body
     const regulationLinkFn = (match) => {
         const validator = ValidationForm.keyExists(match) ? `<button type="button" data-far="${match}">Open Validator</button>` : '';
         return `<a target="_blank" href="https://www.ecfr.gov/current/title-14/section-${match}">${match}</a> ${validator}`
@@ -136,12 +80,12 @@ document.addEventListener("DOMContentLoaded", () => {
             let form = formRegistry[far];
             if(!form){
                  form = ValidationForm.new(button.dataset.far);
-                 form.addEventListener('closing', popupClose);
+                 form.addEventListener('closing', () => modalDialog.close());
                  formRegistry[far] = form;
             } else 
                 form.reset();
 
-            popupOpen(form);
+            modalDialog.open(form);
         });
     }
 
