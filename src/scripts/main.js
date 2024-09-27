@@ -56,22 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = 'hidden';
     }
 
-    const formRegistry = {};
-    for(const button of eleEndorsements.querySelectorAll('button[data-far]')) {
-        button.addEventListener('click', () => {
-            const {far} = button.dataset;
-            let form = formRegistry[far];
-            if(!form){
-                 form = ValidationForm.new(button.dataset.far);
-                 form.addEventListener('closing', popupClose);
-                 formRegistry[far] = form;
-            } else 
-                form.reset();
-
-            popupOpen(form);
-        });
-    }
-
     //Quick Select Buttons
     for(const button of document.querySelectorAll('[data-quick-select]')) {
         button.addEventListener('click', () => {
@@ -143,6 +127,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     bodyBuilder.setOnElement(eleEndorsements);
+
+    //Connect endorsement form buttons.
+    const formRegistry = {};
+    for(const button of eleEndorsements.querySelectorAll('button[data-far]')) {
+        button.addEventListener('click', () => {
+            const {far} = button.dataset;
+            let form = formRegistry[far];
+            if(!form){
+                 form = ValidationForm.new(button.dataset.far);
+                 form.addEventListener('closing', popupClose);
+                 formRegistry[far] = form;
+            } else 
+                form.reset();
+
+            popupOpen(form);
+        });
+    }
 
     //Form Endorsement Submit
     frmEndorsements.addEventListener('submit', (e) => {
