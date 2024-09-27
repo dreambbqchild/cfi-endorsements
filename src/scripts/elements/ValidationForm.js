@@ -11,13 +11,13 @@ const convertOperator = (op) => {
     switch(op)
     {
         case '>=': return '≥';
-        case '==': return '';
+        case '!': return '';
         default: return op
     }
 }
 
 const inputElement = (name, operator, right) => {
-    if(operator === '==' && right.value === true)
+    if(operator === '!')
         return `<input type="checkbox" name="${name}" value="true">`;
 
     return `<input type="text" class="w-100p" name="${name}" required value="0" size="${right.value.toString().length}">`
@@ -35,7 +35,7 @@ const buildNextLevel = (formBuilder, section, sectionPath) => {
             if(!valueValidators[name]) {
                 valueValidators[name] = {
                     fn,
-                    errorMessage: `${key} must be ${convertOperator(operator)} ${right.value}`
+                    errorMessage: `${key} must be ${convertOperator(operator)} ${operator === '!' ? 'true' : right.value}`
                 };
             }
 
