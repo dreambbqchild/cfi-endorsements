@@ -11,8 +11,16 @@ const convertOperator = (op) => {
     switch(op)
     {
         case '>=': return '≥';
+        case '==': return '';
         default: return op
     }
+}
+
+const inputElement = (name, operator, right) => {
+    if(operator === '==' && right.value === true)
+        return `<input type="checkbox" name="${name}" value="true">`;
+
+    return `<input type="text" class="w-100p" name="${name}" required value="0" size="${right.value.toString().length}">`
 }
 
 const buildNextLevel = (formBuilder, section, sectionPath) => {
@@ -32,8 +40,8 @@ const buildNextLevel = (formBuilder, section, sectionPath) => {
             }
 
             formBuilder.append(`<tr>
-                <td class="leaders"><span style="padding-left: ${GAP * (sectionPath.length - 2)}em; display: inline-block;">${label} ${key}</span></td>            
-                <td><input type="text" class="w-100p" name="${name}" required value="0" size="${right.value.toString().length}"></td>
+                <td class="leaders"><span style="display: inline-block;">${label} ${key}</span></td>            
+                <td>${inputElement(name, operator, right)}</td>
             </tr>`);
         }
     }
@@ -128,10 +136,18 @@ export default class ValidationForm extends HTMLElement {
         for(const input of this.#formBody.querySelectorAll('input')) {
             const {fn, errorMessage} = valueValidators[input.name];
             input.setCustomValidity(errorMessage);
-            input.addEventListener('blur', e => {
-                const message = fn(input.value) ? '' : errorMessage; 
-                input.setCustomValidity(message);
-            });
+
+            if(input.type === 'checkbox') {
+                input.addEventListener('click', e => {
+                    const message = fn(input.checked) ? '' : errorMessage; 
+                    input.setCustomValidity(message);
+                });
+            } else {
+                input.addEventListener('blur', () => {
+                    const message = fn(input.value) ? '' : errorMessage; 
+                    input.setCustomValidity(message);
+                });
+            }
         }
 
         if(!this.#form.parentElement)
