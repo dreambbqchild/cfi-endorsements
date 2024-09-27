@@ -51,8 +51,8 @@ export default {
                     name: "ii",
                     validators:[
                         {"Total Nautical Mile Distance of Longest Solo Cross Country": (distance) => distance >= 150},
-                        {"Distinct Full-Stop Airport Landings on Longest Solo Cross Country": (landings) => landings >= 3},
-                        {"Longest Nautical Mile Leg on Longest Solo Cross Country": (longestLeg) => longestLeg >= 50}
+                        {"Full-Stop Airport Landings on Longest Solo Cross Country": (landings) => landings >= 3},
+                        {"Longest Nautical Mile Leg on Longest Solo Cross Country": (longestLeg) => longestLeg > 50}
                     ]
                 }, {
                     name: 'iii',

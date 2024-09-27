@@ -11,7 +11,7 @@ const convertOperator = (op) => {
     switch(op)
     {
         case '>=': return '≥';
-        default: return '?'
+        default: return op
     }
 }
 
