@@ -1,8 +1,7 @@
 const { jsPDF } = jspdf;
-import times from './data/times-normal.js';
 
 var callAddFont = function () {
-    this.addFileToVFS('times-normal.ttf', times);
+    this.addFileToVFS('times-normal.ttf', fontTimesNormal);
     this.addFont('times-normal.ttf', 'times', 'normal');
 };
 jsPDF.API.events.push(['addFonts', callAddFont])

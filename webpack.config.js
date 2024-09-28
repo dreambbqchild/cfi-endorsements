@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -15,6 +16,11 @@ module.exports = {
   }), new MiniCssExtractPlugin({
     filename: "style/[name].[contenthash:8].css",
     chunkFilename: "style/[name].[contenthash:8].chunk.css"
+  }),
+  new CopyPlugin({
+    patterns: [
+      { from: "./src/scripts/services/data/times-normal.js", to: "./scripts/services/data/times-normal.js" },
+    ]
   })],
   module:{
     rules: [
