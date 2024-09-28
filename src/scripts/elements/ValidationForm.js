@@ -128,7 +128,7 @@ export default class ValidationForm extends HTMLElement {
 
         this.#form.setAttribute('name', `frm${validatorKey.replace(/\./g, '_')}`);
 
-        formBuilder.append(`<h2 class="margin-none">§ ${validatorKey} ${validation.title} Validator</h2><table>`);
+        formBuilder.append(`<h2 class="margin-none">§ ${validatorKey} ${validation.title} Validator</h2><table style="min-width: 100%">`);
         buildNextLevel(formBuilder, validation, [validatorKey]);
         formBuilder.append('</table><important-dates></important-dates>')
         formBuilder.setOnElement(this.#formBody);

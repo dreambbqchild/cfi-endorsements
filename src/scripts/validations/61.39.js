@@ -34,15 +34,15 @@ export default {
             }, {
                 name: "6",
                 subsections: [{
-                        name: 'i',
-                        validators: [{"Logged Training Time Within Preceding 2 Calendar Months of the Month of the Test": (value) => !!value}]
-                    }, {
-                        name: 'ii',
-                        validators: [{"Is prepared for practical test": (value) => !!value}]
-                    }, {
-                        name: 'iii',
-                        validators: [{"Addressed Deficiencies on Knowledge Test Report": (value) => !!value}]
-                    }]
+                    name: 'i',
+                    validators: [{"Logged Training Time Within Preceding 2 Calendar Months of the Month of the Test": (value) => !!value}]
+                }, {
+                    name: 'ii',
+                    validators: [{"Is prepared for practical test": (value) => !!value}]
+                }, {
+                    name: 'iii',
+                    validators: [{"Addressed Deficiencies on Knowledge Test Report": (value) => !!value}]
+                }]
             }, {
                 name: "7",
                 validators:[{"Has a Completed and Signed Application Form": (value) => !!value}]

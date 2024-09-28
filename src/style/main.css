@@ -26,14 +26,19 @@
     }
 }
 
-h1 {
-    background-color: var(--light);
-    padding: var(--gap) 0 var(--gap) 0;
-    margin: 0;
-}
-
 * {
     box-sizing: border-box;
+}
+
+button {
+    background-color: lightgray;
+    border-radius: var(--half-gap);
+    border-width: 2px;
+    border-top-color: aliceblue;
+    border-left-color: aliceblue;
+    border-bottom-color: slategray;
+    border-right-color: slategray;
+    padding: 0 var(--half-gap);
 }
 
 html, body {
@@ -48,6 +53,29 @@ html, body, button, input, select {
 
 fieldset {
     display: inline-block;
+}
+
+h1 {
+    background-color: var(--light);
+    padding: var(--gap) 0 var(--gap) 0;
+    margin: 0;
+}
+
+input ~ .endorsement-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s, margin 0.5s;
+    margin: 0;
+}
+
+input:checked ~ .endorsement-body {
+    max-height: 10em;
+    transition: max-height 0.5s, margin 0.5s;
+    margin: var(--gap) 0 var(--gap)  0;
+}
+
+input:user-invalid {
+    box-shadow: 0px 0px 2px 2px red;
 }
 
 label {
@@ -200,21 +228,4 @@ embed {
 
 .w-100p {
     width: 100%;
-}
-
-input ~ .endorsement-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s, margin 0.5s;
-    margin: 0;
-}
-
-input:checked ~ .endorsement-body {
-    max-height: 10em;
-    transition: max-height 0.5s, margin 0.5s;
-    margin: var(--gap) 0 var(--gap)  0;
-}
-
-input:user-invalid {
-    box-shadow: 0px 0px 2px 2px red;
 }
