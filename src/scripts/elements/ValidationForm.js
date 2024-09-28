@@ -7,41 +7,52 @@ const closingEvent = new CustomEvent("closing");
 
 const valueValidators = {};
 
-const convertOperator = (op) => {
-    switch(op)
-    {
-        case '>=': return '≥';
-        case '!': return '';
-        default: return op
+const handleFunctionBody = (name, key, body) => {
+    const convertOperator = (op) => {
+        switch(op)
+        {
+            case '>=': return '≥';
+            default: return op
+        }
     }
-}
 
-const inputElement = (name, operator, right) => {
-    if(operator === '!')
-        return `<input type="checkbox" name="${name}" value="true">`;
+    const {operator, type} = body;
 
-    return `<input type="text" class="w-100p" name="${name}" required value="0" size="${right.value.toString().length}">`
+    if(type === 'UnaryExpression' && operator === '!') {
+        return {
+            inputHtml: `<input type="checkbox" name="${name}">`,
+            errorMessage: `${key} must be checked.`
+        }
+    }
+
+    const {right} = body;
+
+    return {
+        inputHtml: `<input type="text" class="w-100p" name="${name}" required value="0" size="${right.value.toString().length}">`,
+        errorMessage: `${key} must be ${convertOperator(operator)} ${right.value}`
+    }
 }
 
 const buildNextLevel = (formBuilder, section, sectionPath) => {
     if(section.validators) {
         for(const [index, validator] of section.validators.entries()) {
             const [key, fn] = Object.entries(validator)[0];
-            const node = esprima.parseScript(fn.toString());
-            const {operator, right} = node.body[0].expression.body;
+            const {body} = esprima.parseScript(fn.toString()).body[0].expression;
             const label = sectionPath.slice(1).map(s => `(${s})`).join('');
             const name = sectionPath.map(s => s.replace(/\./g, '_')).join('_') + `_idx${index}`;
+
+            const {inputHtml, errorMessage} =  handleFunctionBody(name, key, body);
 
             if(!valueValidators[name]) {
                 valueValidators[name] = {
                     fn,
-                    errorMessage: `${key} must be ${convertOperator(operator)} ${operator === '!' ? 'true' : right.value}`
+                    errorMessage
                 };
             }
 
             formBuilder.append(`<tr>
                 <td class="leaders"><span style="display: inline-block;">${label} ${key}</span></td>            
-                <td>${inputElement(name, operator, right)}</td>
+                <td>${inputHtml}</td>
             </tr>`);
         }
     }
