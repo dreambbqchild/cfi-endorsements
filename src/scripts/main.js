@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const regulationLinkFn = (match) => {
-        const validator = ValidationForm.keyExists(match) ? `<button type="button" data-far="${match}">Open Validator</button>` : '';
+        const validator = ValidationForm.keyExists(match) ? `<button type="button" data-far="${match}">Validate</button>` : '';
         return `<a target="_blank" href="https://www.ecfr.gov/current/title-14/section-${match}">${match}</a> ${validator}`
     }
 
