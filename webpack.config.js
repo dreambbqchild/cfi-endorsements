@@ -23,12 +23,10 @@ module.exports = {
     ]
   })],
   module:{
-    rules: [
-        {
-            test: /\.css$/,
-            use: [MiniCssExtractPlugin.loader, 'css-loader']
-        }
-      ]
+    rules: [{
+      test: /\.css$/,
+      use: [MiniCssExtractPlugin.loader, 'css-loader']
+    }]
   },
   devServer: {
     compress: true,
